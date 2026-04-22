@@ -1,0 +1,115 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  max-width: 1200px;
+}
+
+.home-header {
+  text-align: center;
+}
+
+.home-header h1 {
+  margin: 0 0 12px 0;
+  font-size: 40px;
+  background: linear-gradient(135deg, var(--accent-primary), var(--accent-hover));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.home-header p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 18px;
+}
+
+.tools-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 24px;
+}
+
+.tool-card {
+  background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 32px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+  text-decoration: none;
+  color: inherit;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+}
+
+.tool-card:hover:not(.coming-soon) {
+  border-color: var(--accent-primary);
+  transform: translateY(-8px);
+  box-shadow: 0 12px 32px rgba(52, 211, 153, 0.15);
+}
+
+.tool-card.coming-soon {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.tool-icon {
+  color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tool-card h3 {
+  margin: 0;
+  font-size: 20px;
+  color: var(--text-primary);
+}
+
+.tool-card p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.tool-badge {
+  display: inline-block;
+  padding: 6px 12px;
+  background-color: var(--accent-primary);
+  color: var(--bg-primary);
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tool-card.coming-soon .tool-badge {
+  background-color: var(--border-color);
+  color: var(--text-muted);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .home {
+    gap: 24px;
+  }
+
+  .home-header h1 {
+    font-size: 28px;
+  }
+
+  .home-header p {
+    font-size: 16px;
+  }
+
+  .tools-grid {
+    grid-template-columns: 1fr;
+  }
+}

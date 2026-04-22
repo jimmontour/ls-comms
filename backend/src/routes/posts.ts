@@ -5,6 +5,7 @@ const router: Router = express.Router();
 
 // In-memory posts store
 const posts: Map<string, any> = new Map();
+const queue: any[] = []; // Bull queue placeholder
 
 // Create scheduled post
 router.post('/', authMiddleware, async (req: Request, res: Response) => {
@@ -62,6 +63,26 @@ router.put('/:postId', authMiddleware, async (req: Request, res: Response) => {
     res.json(updated);
   } catch (err) {
     res.status(500).json({ error: 'Failed to update post' });
+  }
+});
+
+// Publish post now
+router.post('/:postId/publish', authMiddleware, async (req: Request, res: Response) => {
+  try {
+    const { postId } = req.params;
+    const post = posts.get(postId);
+
+    if (!post) return res.status(404).json({ error: 'Post not found' });
+    if (post.status === 'published') {
+      return res.status(400).json({ error: 'Already published' });
+    }
+
+    post.status = 'published';
+    post.publishedAt = new Date();
+    posts.set(postId, post);
+    res.json(post);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to publish post' });
   }
 });
 

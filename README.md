@@ -1,4 +1,4 @@
-# SocialHub - Multi-Platform Social Media Scheduler
+# LS Comms - Multi-Platform Social Media Scheduler for Lake Shore
 
 A Buffer-like social media scheduling app with OAuth integration for Facebook, Instagram, X, and LinkedIn.
 

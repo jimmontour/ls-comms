@@ -9,6 +9,9 @@ import accountRoutes from './routes/accounts';
 import postRoutes from './routes/posts';
 import analyticsRoutes from './routes/analytics';
 import oauthRoutes from './routes/oauth';
+import linkTreeRoutes from './routes/link-trees';
+import resourceRoutes from './routes/resources';
+import newsRoutes from './routes/news';
 import passportConfig from './config/passport';
 
 dotenv.config();
@@ -48,6 +51,9 @@ app.use('/api/auth', authRoutes);
 app.use('/api/accounts', accountRoutes);
 app.use('/api/posts', postRoutes);
 app.use('/api/analytics', analyticsRoutes);
+app.use('/api/link-trees', linkTreeRoutes);
+app.use('/api/resources', resourceRoutes);
+app.use('/api/news', newsRoutes);
 app.use('/auth', oauthRoutes);
 
 app.get('/health', (req: Request, res: Response) => {

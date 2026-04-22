@@ -19,10 +19,12 @@ const Login: React.FC = () => {
     setLoading(true);
 
     try {
-      const endpoint = isSignup ? '/auth/signup' : '/auth/login';
+      const endpoint = isSignup ? 'auth/signup' : 'auth/login';
+      const apiBase = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api${endpoint}`,
-        isSignup ? { email, password, name } : { email, password }
+        `${apiBase}/${endpoint}`,
+        isSignup ? { email, password, name } : { email, password },
+        { headers: { 'Content-Type': 'application/json' } }
       );
 
       login(response.data.token);

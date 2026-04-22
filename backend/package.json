@@ -1,0 +1,40 @@
+{
+  "name": "social-scheduler-backend",
+  "version": "1.0.0",
+  "description": "Multi-platform social media scheduling API",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "ts-node src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "test": "jest"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "passport": "^0.7.0",
+    "passport-facebook": "^3.0.0",
+    "passport-twitter": "^1.0.4",
+    "passport-linkedin-oauth2": "^1.1.8",
+    "passport-google-oauth20": "^2.0.0",
+    "mongoose": "^7.0.0",
+    "bull": "^4.11.0",
+    "redis": "^4.6.0",
+    "axios": "^1.4.0",
+    "dotenv": "^16.0.3",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.0",
+    "cors": "^2.8.5",
+    "helmet": "^7.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.0.0",
+    "@types/node": "^20.0.0",
+    "@types/express": "^4.17.17",
+    "@types/passport": "^1.0.12",
+    "ts-node": "^10.9.0",
+    "jest": "^29.5.0",
+    "@types/jest": "^29.5.0",
+    "@types/express-session": "^1.17.7"
+  }
+}

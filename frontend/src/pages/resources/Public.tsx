@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Download, ExternalLink } from 'lucide-react';
 import axios from 'axios';
+import { Download, ExternalLink } from 'lucide-react';
+
 import './Public.css';
 
 interface ResourceItem {
@@ -34,10 +35,11 @@ const ResourcesPublic: React.FC = () => {
     const fetchResource = async () => {
       try {
         setLoading(true);
-        // TODO: Create a public endpoint that doesn't require auth
-        setError('Resource library not found');
+        const response = await axios.get(`http://localhost:5000/api/resources/public/${slug}`);
+        setResource(response.data);
       } catch (err) {
-        setError('Failed to load resource library');
+        console.error('Failed to load resource', err);
+        setError('Resource library not found');
       } finally {
         setLoading(false);
       }

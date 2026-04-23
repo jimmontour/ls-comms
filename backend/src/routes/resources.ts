@@ -55,11 +55,27 @@ router.get('/:teamId', authMiddleware, async (req: Request, res: Response) => {
   }
 });
 
-// Get single resource
+// Get single resource (auth required)
 router.get('/view/:id', authMiddleware, async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const resource = resources.get(id);
+
+    if (!resource) {
+      return res.status(404).json({ error: 'Resource not found' });
+    }
+
+    res.json(resource);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch resource' });
+  }
+});
+
+// Get resource by slug (PUBLIC - no auth required)
+router.get('/public/:slug', async (req: Request, res: Response) => {
+  try {
+    const { slug } = req.params;
+    const resource = Array.from(resources.values()).find(r => r.slug === slug);
 
     if (!resource) {
       return res.status(404).json({ error: 'Resource not found' });

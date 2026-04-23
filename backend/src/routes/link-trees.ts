@@ -55,11 +55,27 @@ router.get('/:teamId', authMiddleware, async (req: Request, res: Response) => {
   }
 });
 
-// Get single link tree
+// Get single link tree (auth required)
 router.get('/view/:id', authMiddleware, async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const linkTree = linkTrees.get(id);
+
+    if (!linkTree) {
+      return res.status(404).json({ error: 'Link tree not found' });
+    }
+
+    res.json(linkTree);
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch link tree' });
+  }
+});
+
+// Get link tree by slug (PUBLIC - no auth required)
+router.get('/public/:slug', async (req: Request, res: Response) => {
+  try {
+    const { slug } = req.params;
+    const linkTree = Array.from(linkTrees.values()).find(lt => lt.slug === slug);
 
     if (!linkTree) {
       return res.status(404).json({ error: 'Link tree not found' });

@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Facebook, Instagram, Linkedin, Twitter, Mail } from 'lucide-react';
 import axios from 'axios';
+import { Facebook, Instagram, Linkedin, Twitter, Mail } from 'lucide-react';
+
 import './Public.css';
 
 interface LinkTreeData {
@@ -24,11 +25,11 @@ const LinkTreePublic: React.FC = () => {
     const fetchLinkTree = async () => {
       try {
         setLoading(true);
-        // TODO: Create a public endpoint that doesn't require auth
-        // For now, this is a placeholder
-        setError('Link tree not found');
+        const response = await axios.get(`http://localhost:5000/api/link-trees/public/${slug}`);
+        setLinkTree(response.data);
       } catch (err) {
-        setError('Failed to load link tree');
+        console.error('Failed to load link tree', err);
+        setError('Link tree not found');
       } finally {
         setLoading(false);
       }

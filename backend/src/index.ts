@@ -60,7 +60,7 @@ app.get('/health', (req: Request, res: Response) => {
   res.json({ status: 'ok', db: 'mock', timestamp: new Date().toISOString() });
 });
 
-const server = app.listen(PORT, '0.0.0.0', () => {
+const server = app.listen(PORT, 'localhost', () => {
   console.log(`\n✓ Server running on 0.0.0.0:${PORT}`);
   console.log(`✓ Access from your laptop: http://172.27.28.203:${PORT}`);
   console.log(`✓ Health check: curl http://172.27.28.203:${PORT}/health\n`);
